@@ -1,0 +1,14 @@
+{
+    "name": "devborges1/graphql-pedidos-php",
+    "type": "project",
+    "authors": [
+        {
+            "name": "devborges1",
+            "email": "170222043+DEVBORGES1@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "webonyx/graphql-php": "^15.39"
+    }
+}

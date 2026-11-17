@@ -1,0 +1,38 @@
+# Ambientes virtuais Python
+.venv/
+venv/
+env/
+
+# Variáveis de ambiente / segredos
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Node
+node_modules/
+
+# VS Code / IDEs
+.vscode/
+.idea/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Java / Maven (acréscimo: não está na lista do PDF)
+target/
+*.iml
+
+# PHP / Composer (acréscimo: dependências e dados gerados pelo servidor GraphQL)
+vendor/
+composer.phar
+apis-php/graphql-pedidos-php/pedidos.json

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+        name="PedidoServiceDocumento"
+        targetNamespace="http://exemplo.com/pedidos"
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://exemplo.com/pedidos">
+
+    <wsdl:types>
+        <xsd:schema
+                targetNamespace="http://exemplo.com/pedidos"
+                elementFormDefault="qualified">
+
+            <xsd:complexType name="Pedido">
+                <xsd:sequence>
+                    <xsd:element name="numero" type="xsd:string"/>
+                    <xsd:element name="cliente" type="xsd:string"/>
+                    <xsd:element name="status" type="xsd:string"/>
+                    <xsd:element name="valorTotal" type="xsd:decimal"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="consultarPedido">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element
+                                name="numeroPedido"
+                                type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="consultarPedidoResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element
+                                name="return"
+                                type="tns:Pedido"
+                                minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ConsultarPedidoInput">
+        <wsdl:part
+                name="parameters"
+                element="tns:consultarPedido"/>
+    </wsdl:message>
+
+    <wsdl:message name="ConsultarPedidoOutput">
+        <wsdl:part
+                name="parameters"
+                element="tns:consultarPedidoResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="PedidoPortTypeDocumento">
+        <wsdl:operation name="consultarPedido">
+            <wsdl:input message="tns:ConsultarPedidoInput"/>
+            <wsdl:output message="tns:ConsultarPedidoOutput"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding
+            name="PedidoBindingDocumento"
+            type="tns:PedidoPortTypeDocumento">
+
+        <soap:binding
+                style="document"
+                transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="consultarPedido">
+            <soap:operation
+                    soapAction="http://exemplo.com/pedidos/consultarPedido"/>
+
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="PedidoServiceDocumento">
+        <wsdl:port
+                name="PedidoPortDocumento"
+                binding="tns:PedidoBindingDocumento">
+            <soap:address
+                    location="http://127.0.0.1:8082/soap/pedidos-documento"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
